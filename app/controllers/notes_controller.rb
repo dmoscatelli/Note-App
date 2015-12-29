@@ -26,10 +26,18 @@ before_action :find_note, only: [:show, :edit, :update, :destroy]
 	end 
 
 	def update
+
+		if @note.update(note_params)
+			redirect_to @note
+		else
+			render 'edit'
+		end
 	end 
 
 
 	def destroy
+		@note.destroy
+		redirect_to note_path
 	end 
 
 
